@@ -6,12 +6,13 @@ import jssc.SerialPortException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
 
 public class Main {
-
+// java -cp mojjar;jssc.jar Main
 	/**
 	 * @param args
-	 * @throws SerialPortException 
+	 * @throws /
 	 */
     static String commName = "COM1";
     static SerialPort serialPort;// = new SerialPort(commName);
@@ -25,11 +26,11 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         serialPort = new SerialPort(commName);
-        commName = "COM1";
+       // commName = "COM1";
         macros = new ArrayList<String>();
 
-       // ***  serialPort.openPort();
-       // ***  serialPort.setParams(9600, 8, 1, 0);
+//        serialPort.openPort();
+//        serialPort.setParams(9600, 8, 1, 0);
 
         while(in.hasNext()){
             for(String ss : macros){
@@ -110,37 +111,43 @@ public class Main {
         switch (word[0]) {
             case "home":
                 Home.move(serialPort);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
                 //waitaMoment(5);
                 break;
             case "right":
                 MoveRight.move(serialPort, speed1, speed2);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "left":
                 MoveLeft.move(serialPort, speed1, speed2);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "up":
                 MoveUp.move(serialPort, speed1, speed2);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "down":
                 MoveDown.move(serialPort, speed1, speed2);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "tele":
                 ZoomTele.move(serialPort);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "wide":
                 ZoomWide.move(serialPort);
-                readResponseHelp(serialPort);
+                System.out.println(byteArrayToString(readResponseHelp(serialPort)));
+
                 //waitaMoment(5);
                 break;
             case "speed":
@@ -183,17 +190,25 @@ public class Main {
         int n2 = 0;
         while (n2 < n) {
             byte b = arrby[n2];
-          //  sb.append(String.format("%02X ", new Object[](Byte.valueOf(b))));
+            sb.append(String.format("%02X ", b));
             ++n2;
         }
         return sb.toString();
     }
 
-    public static void readResponseHelp(SerialPort serialPort){
+    public static byte[] readResponseHelp(SerialPort serialPort){
         try {
-            ResponseReader.readResponse(serialPort);
-        } catch (Exception e) {
+            return ResponseReader.readResponse(serialPort);
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
             e.printStackTrace();
         }
+//        try {
+//            System.out.println(ResponseReader.readResponse(serialPort));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+       return new byte[]{1};
     }
 }

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="multimedia:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/multimedia_jar</output-path>
+    <root id="archive" name="multimedia.jar">
+      <element id="module-output" name="multimedia" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../dist/visca_lib/jssc.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

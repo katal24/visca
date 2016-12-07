@@ -25,7 +25,7 @@ public class MoveUp extends Cmd  {
 //      System.out.println("@ " + Main.byteArrayToString(cmdData));
         System.out.println("MoveUp");
 
-  //***      serialPort.writeBytes(cmdData);
+       serialPort.writeBytes(cmdData);
       
 	}
 

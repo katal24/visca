@@ -26,7 +26,7 @@ public class MoveRight extends Cmd  {
 //      System.out.println("@ " + Main.byteArrayToString(cmdData));
         System.out.println("MoveRight");
 
-  //***      serialPort.writeBytes(cmdData);
+        serialPort.writeBytes(cmdData);
       
 	}
 

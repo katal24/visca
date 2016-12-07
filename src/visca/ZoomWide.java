@@ -21,7 +21,7 @@ public class ZoomWide extends Cmd  {
         cmdData = vCmd.getCommandData();
 //      System.out.println("@ " + Main.byteArrayToString(cmdData));
         System.out.println("ZoomWide");
-        //    serialPort.writeBytes(cmdData);
+            serialPort.writeBytes(cmdData);
 
     }
 

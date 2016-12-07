@@ -21,7 +21,7 @@ public class ZoomTele extends Cmd  {
         cmdData = vCmd.getCommandData();
 //      System.out.println("@ " + Main.byteArrayToString(cmdData));
         System.out.println("ZoomTele");
-    //    serialPort.writeBytes(cmdData);
+        serialPort.writeBytes(cmdData);
 
     }
 
